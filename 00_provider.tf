@@ -8,5 +8,13 @@ terraform {
 }
 
 provider "aws" {
+  profile = "default"
+  region  = "ap-southeast-1"
+  alias   = "tf57-singapore"
+}
 
+provider "aws" {
+  profile = "production"
+  region  = "ap-south-1"
+  alias   = "tf57-mumbai-production"
 }
