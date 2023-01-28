@@ -5,8 +5,8 @@ resource "aws_instance" "demo_instance" {
     Name = "linux-webserver1"
     Dept = "devops"
   }
-  ami                    = "ami-0cca134ec43cf708f"
-  instance_type          = "t2.micro"
+  ami                    = var.ami
+  instance_type          = var.instance_type
   key_name               = "terraformclass-mumbai-kp"
   subnet_id              = aws_subnet.demo_subnet1.id
   vpc_security_group_ids = [aws_security_group.demo_sg.id]

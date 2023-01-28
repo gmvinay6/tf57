@@ -7,7 +7,7 @@ resource "aws_security_group" "demo_sg" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = ["1.2.3.4/32"]
+    cidr_blocks = [var.allow_specific]
   }
   ingress {
     description = "http port"
@@ -21,7 +21,21 @@ resource "aws_security_group" "demo_sg" {
     from_port   = 3389
     to_port     = 3389
     protocol    = "tcp"
-    cidr_blocks = ["1.2.3.4/32"]
+    cidr_blocks = [var.allow_specific]
+  }
+  ingress {
+    description = "rds port"
+    from_port   = 3306
+    to_port     = 3306
+    protocol    = "tcp"
+    cidr_blocks = [var.allow_specific]
+  }
+  ingress {
+    description = "nfs port"
+    from_port   = 2049
+    to_port     = 2049
+    protocol    = "tcp"
+    cidr_blocks = [var.allow_specific]
   }
   tags = {
     Name = "tf-vpc-sg"
