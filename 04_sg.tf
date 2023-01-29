@@ -1,11 +1,11 @@
 resource "aws_security_group" "demo_sg" {
   name        = "tf-vpc-sg"
-  description = "Allow specific traffic for the application"
+  description = "Allow ${var.allow_specific} for the application"
   vpc_id      = aws_vpc.demo_vpc.id
   ingress {
     description = "ssh port"
-    from_port   = 22
-    to_port     = 22
+    from_port   = var.sshport
+    to_port     = var.sshport
     protocol    = "tcp"
     cidr_blocks = [var.allow_specific]
   }

@@ -1,15 +1,21 @@
 #this resource block creates ec2 instance in mumbai region
 
 resource "aws_instance" "demo_instance" {
-  tags = {
-    Name = "linux-webserver1"
-    Dept = "devops"
-  }
-  ami                    = var.ami
-  instance_type          = var.instance_type
+  tags                   = var.instance_tag
+  ami                    = var.ami["amazon"]
+  instance_type          = var.instance_type[0]
   key_name               = "terraformclass-mumbai-kp"
   subnet_id              = aws_subnet.demo_subnet1.id
   vpc_security_group_ids = [aws_security_group.demo_sg.id]
+}
+
+/*
+resource "aws_instance" "demo_instance3" {
+  tags                   = var.instance_tag
+  ami                    = var.ami["rhel"]
+  instance_type          = var.instance_type[0]
+  key_name               = "terraformclass-mumbai-kp"
+  vpc_security_group_ids = var.sgs
 }
 
 resource "time_sleep" "wait_a_min" {
@@ -19,7 +25,6 @@ resource "time_sleep" "wait_a_min" {
   ]
 }
 
-/*
 #this resource block creates ec2 instance in singapore region
 
 resource "aws_instance" "demo_instance1" {

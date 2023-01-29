@@ -13,7 +13,7 @@ resource "aws_subnet" "demo_subnet1" {
   }
   availability_zone       = "ap-south-1a"
   cidr_block              = "192.168.2.0/26"
-  map_public_ip_on_launch = true
+  map_public_ip_on_launch = var.public_ip_on_launch
 }
 
 resource "aws_subnet" "demo_subnet2" {
@@ -23,7 +23,7 @@ resource "aws_subnet" "demo_subnet2" {
   }
   availability_zone       = "ap-south-1b"
   cidr_block              = "192.168.2.64/26"
-  map_public_ip_on_launch = true
+  map_public_ip_on_launch = var.public_ip_on_launch
 }
 
 resource "aws_internet_gateway" "demo_igw" {
