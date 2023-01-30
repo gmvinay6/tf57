@@ -13,4 +13,4 @@ sgs                 = ["sg-079dc53d087d1f5a5", "sg-077512183aa95a025"]
 bucket_name         = "jerrish-tf57"
 public_ip_on_launch = true
 allow_specific      = "2.2.2.2/32"
-ssh_port             = 22
+sshport             = 22
