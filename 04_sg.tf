@@ -28,7 +28,7 @@ resource "aws_security_group" "demo_sg" {
     from_port   = 3306
     to_port     = 3306
     protocol    = "tcp"
-    cidr_blocks = [var.allow_specific]
+    self        = true
   }
   ingress {
     description = "nfs port"

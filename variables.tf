@@ -1,3 +1,8 @@
+variable "ssh_pub_key" {
+  type = string
+  sensitive = true
+}
+
 variable "instance_tag" {
   type = map(any)
 }
@@ -30,4 +35,24 @@ variable "allow_specific" {
 
 variable "sshport" {
   type = number
+}
+
+variable "list_of_any" {
+ type = list(any)
+ default = [ "hello" , 100 , true ]
+}
+
+variable "db_username" {
+  type = string
+  sensitive = true
+}
+
+variable "db_password" {
+  type = string
+  sensitive = true
+}
+
+variable "initial_db_name" {
+  type = string
+  sensitive = true
 }

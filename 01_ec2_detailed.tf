@@ -1,10 +1,17 @@
-#this resource block creates ec2 instance in mumbai region
+#this resource deploys public key to aws specified region
+
+resource "aws_key_pair" "demo_ssh_pub_key" {
+  key_name   = "tf-ssh-key"
+  public_key = file(var.ssh_pub_key)
+}
+
+#this resource creates ec2 instance in mumbai region
 
 resource "aws_instance" "demo_instance" {
   tags                   = var.instance_tag
   ami                    = var.ami["amazon"]
   instance_type          = var.instance_type[0]
-  key_name               = "terraformclass-mumbai-kp"
+  key_name               = aws_key_pair.demo_ssh_pub_key.key_name
   subnet_id              = aws_subnet.demo_subnet1.id
   vpc_security_group_ids = [aws_security_group.demo_sg.id]
 }
@@ -25,7 +32,7 @@ resource "time_sleep" "wait_a_min" {
   ]
 }
 
-#this resource block creates ec2 instance in singapore region
+#this resource creates ec2 instance in singapore region
 
 resource "aws_instance" "demo_instance1" {
   tags = {
@@ -37,7 +44,7 @@ resource "aws_instance" "demo_instance1" {
   provider      = aws.tf57-singapore
 }
 
-#this resource block creates ec2 instance in mumbai region in account2
+#this resource creates ec2 instance in mumbai region in account2
 
 resource "aws_instance" "demo_instance2" {
   tags = {

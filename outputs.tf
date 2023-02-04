@@ -7,5 +7,5 @@ output "s3_bucket_arn" {
 }
 */
 output "allowed_corp_public_ip" {
-  value = "${var.allow_specific}"
+  value = var.allow_specific
 }
